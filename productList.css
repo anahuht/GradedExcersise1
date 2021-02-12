@@ -1,0 +1,164 @@
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+/*Navigation*/
+.tab-nav-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 120px;
+    align-items: center;
+  }
+
+
+.tab-nav-header button {
+  height: 50px;
+  width: 150px;
+  border: 0px;
+  font-family: 'Lato', sans-serif;
+  background-color: transparent;
+  padding: 2px 2px;
+  cursor: pointer;
+}
+
+.tab {
+  padding: 15px;
+  cursor: pointer;
+}
+  
+  
+  .tab.active {
+    background-color: #004898!important;
+    border-radius: 3px !important;
+    color: white;
+  }
+  /*All icons*/
+.icon {
+    color: #004898;
+    font-size: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px 5px;
+}
+
+.tab-nav-content >.tab-content {
+  display: none;
+}
+
+.tab-nav-content >.tab-content.active {
+  display: block;
+}
+
+.welcome {
+  margin-top: 100px;
+  font-size: 48px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+.welcome button {
+  align-self: center;
+  width: 210px;
+  height: 70px;
+  color: white;
+  background-color: #004898;
+  font-size: 24px;
+  border: none;
+  border-radius: 3px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.productList {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.productCard {
+  padding: 30px;
+  margin: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  height: 500px;
+}
+
+.productCard img {
+  padding: 20px;
+   width: 300px;
+}
+
+.productCard p {
+  font-size: 20px;
+
+}
+
+.favourite, .Cart {
+    color: #004898;
+    font-size: 24px;
+    background: transparent;
+    border: none;
+    float: right;
+    cursor: pointer;
+}
+
+
+
+.productsInBag > .productCard {
+  width: 60%;
+  height: 200px;
+  flex-direction: row;
+}
+
+.productsInBag > .productCard img {
+  width: 250px;
+  float: left;
+}
+
+.aboutUs {
+  font-family: 'Lato', sans-serif;
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background-color: #cacaca50;
+}
+
+.aboutUs h1 {
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 20px;
+}
+
+.aboutUs p {
+  padding: 30px;
+}
+
+.footer {
+    width: 100%;
+    height: 130px;
+    background-color: #004998;
+    color: rgba(255, 255, 255, 0.274);
+    text-align: center;
+}
+
+.footer p {
+    padding: 35px;
+}
+
+.socialMedia {
+  color: white;
+  padding: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.activee:hover {
+  border-bottom: 4px solid #004898;
+}

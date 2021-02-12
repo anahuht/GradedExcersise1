@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://kit.fontawesome.com/ad71ca8aee.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="productList.css"/>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,300&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="Navigation">
+           <div class="tab-nav-header">
+            <td><a><img src="https://sun9-2.userapi.com/impg/MAtExGtXaMxM0jVvF6voWp5-rNKYt-frfyYiEw/3m62-y_1VDc.jpg?size=240x222&quality=96&proxy=1&sign=0bf7cd4220be89e1a24249bc34c848cb&type=album" style="width:132px"></a></td>
+            <div class="tab active" data-tab-target="tab1">CATALOG</div>
+            <div class="tab" data-tab-target="tab2">SHOPS</div>
+            <div class="tab" data-tab-target="tab2">DELIVERY</div>
+            <div class="tab" data-tab-target="tab2">CUSTOMER SERVICE</div>
+            <div class="tab icon" data-tab-target="tab2"><i class="far fa-heart"></i></div>
+            <div class="tab icon" data-tab-target="tab3"><i class="fas fa-shopping-basket"></i></div>
+           </div>
+            
+          <div class="tab-nav-content">
+            <div class="tab-content active" data-tab-content="tab1">
+
+                 <div class="welcome"> Welcome to our page! 
+                     <p style="font-size:36px">To see our products please click the button below:</p>
+                 <button onclick="createCatalog()">CATALOG</button></div>
+                 <div id="catalog"></div>
+
+            </div>
+            <div class="tab-content" data-tab-content="tab2">
+                 <h1 style="margin: 100px">Coming soon...</h1>
+            </div>
+            <div class="tab-content" data-tab-content="tab3">
+                 <h1>Shopping bag</h1>
+                 <p class="p">Free delivery when buy over &#8364;100 or pick up at any of our offline shops!</p>
+                 <div id="shopping-bag"></div>
+                 
+                 <div class="Total">
+                     Total: 
+                 </div>
+            </div>
+          </div>
+        </div>  
+
+        
+
+<script>
+    /*Products Data*/
+const productData = [
+                {
+                    image : 'GradedExcersise1/Petersburg.jpg',
+                    name : 'Petersburg',
+                    description : 'Tea cup and plate',
+                    description2 : 'Gift set',
+                    price :'€ 40',
+                    productId: 1
+                },
+                {
+                    image : 'GradedExcersise1/metel.jpg',
+                    name : 'Guest',
+                    description : 'Sculpture',
+                    price :'€ 50',
+                    productId: 2
+                },
+                {
+                    image : 'GradedExcersise1/malevich.jpg',
+                    name : 'Malevich',
+                    description : 'Tea cup and plate',
+                    price :'€ 20',
+                    productId: 3
+                },
+                {
+                    image : 'GradedExcersise1/prince.jpg',
+                    name : 'Little Prince',
+                    description : 'Gift plate',
+                    price :'€ 32',
+                    productId: 4
+                },
+                {
+                    image : 'GradedExcersise1/Dome.jpg',
+                    name : 'Dome',
+                    description : 'Gift set',
+                    price :'€ 250',
+                    productId: 5
+                },
+                {
+                    image : 'GradedExcersise1/giftCard.png',
+                    name : 'Gift card',
+                    description : 'Different options',
+                    price :'from € 20',
+                    productId: 6
+                }
+            ];
+
+/*Creating tab navigation*/
+            function tabHeaderElementClickHandler(clickedElement) {
+                 const targetContentName = clickedElement.getAttribute('data-tab-target');
+                 const currentActiveElements = document.querySelectorAll('.Navigation .active');
+                 for (let i = 0; i < currentActiveElements.length; i++) {
+                 currentActiveElements[i].classList.remove('active');
+             }
+
+             clickedElement.classList.add('active');
+             const targetContentElement = document.querySelector('[data-tab-content="' + targetContentName + '"]');
+             targetContentElement.classList.add('active');
+             }
+
+             let tabHeaderItems = document.querySelectorAll('.tab-nav-header > .tab');
+             for(let i = 0; i < tabHeaderItems.length; i++) {
+             tabHeaderItems[i].onclick = () => tabHeaderElementClickHandler(tabHeaderItems[i]);
+             }
+
+/*Creating catalogue*/
+
+    function createCatalog() {
+        const productStrings = productData.map(c => prepareSingleProductHTMLString(c.name, c.image, c.description, c.price));
+
+
+        document.getElementById('catalog').innerHTML += `
+         <div class="productList">
+            ${productStrings.join('')}
+          </div>
+        `;
+      }
+
+      function prepareSingleProductHTMLString(name, imagePath, description, price) {
+        return `
+        <div class="productCard">
+          <img src="../${imagePath}">
+          <div class="productInfo">
+            <h1>${name}</h1>
+            <p>${description}</p>
+            <p>${price} </p>
+            <span class="stock"><i class="fas fa-check" style="color:green"></i></span>  in stock <br>
+                
+                <button onClick="addProduct()" id="cart" class="Cart""><i class="fas fa-shopping-basket"></i></button></p>
+          </div>
+        </div>
+        `;
+      }
+
+/*Adding products to the basket*/
+function addProduct() {
+        
+            let target = document.getElementById('cart');
+            target.innerHTML = "Added to basket";
+            let target1 = document.getElementById("shopping-bag");
+            const productStrings = productData.map(c => prepareChoosenProductHTMLString(c.name, c.image, c.description, c.price));
+            target1.innerHTML = `
+         <div class="productsInBag">
+            ${productStrings}
+          </div>
+        `;
+      }
+
+            
+      function prepareChoosenProductHTMLString( name, imagePath, description, price) {
+        return `
+        <div class="productCard">
+          <img src="../${imagePath}">
+          <div class="productInfo">
+            <h1>${name}</h1>
+            <p>${description}</p>
+            <p>${price} </p>
+            <span class="stock"><i class="fas fa-check" style="color:green"></i></span>  in stock <br>
+            <form action="/action_page.php">
+             <label for="amount">amount:  </label>
+             <select id="amount" name="amount">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+             </select>
+             </form>
+             
+          </div>
+        </div>
+        `;
+      }
+
+
+</script>
+
+<div class="footer">
+    <p>2020 Author: Anastasiia Huhtala <br><br>
+    <span class="socialMedia"><i class="fab fa-instagram"></i></span>
+    <span class="socialMedia"><i class="fab fa-facebook-square"></i></span>
+    <span class="socialMedia"><i class="fab fa-vk"></i></span></p>
+</div>
+    </body>
+</html>
